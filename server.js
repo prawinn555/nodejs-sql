@@ -30,6 +30,7 @@ app.get('/swagger.json', function(req, res) {
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
+// avoir deprecated method
 mongoose.set('useFindAndModify', false);
 
 // database URL
