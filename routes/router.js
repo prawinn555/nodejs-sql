@@ -51,25 +51,23 @@ router.get('/products', product_controller.product_list);
 /**
  * @swagger
  * /products/create:
- *   put:
+ *   post:
  *     tags:
  *       - Product management
  *     description: Create a new product
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: name
- *         description: Product name
- *         in: body
- *         required: true
- *         type: string
- *         example: Cookies
-  *       - name: price
- *         description: Product price
- *         in: body
- *         required: true
- *         type: integer
- *         example: 200
+ *     requestBody:
+ *       content:
+ *         'application/x-www-form-urlencoded':
+ *       schema:
+ *         properties:
+ *         name: 
+ *            description: product name
+ *            type: string
+ *         price: 
+ *            description: price
+ *            type: integer
  *     responses:
  *       200:
  *         description: Result

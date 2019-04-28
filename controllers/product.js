@@ -10,8 +10,8 @@ exports.product_create = function (req, res) {
   
     var product = new Product(
         {
-            name: req.body.name,
-            price: req.body.price
+            name: "gg",
+            price: 12
         }
     );
 
