@@ -50,7 +50,7 @@ npm install
 
 
 ```
-MONGODB_URI=mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true'
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true
 
 ```
 
