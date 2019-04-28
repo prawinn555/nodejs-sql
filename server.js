@@ -1,12 +1,33 @@
 
-// app.js
-
 var express = require('express');
-var bodyParser = require('body-parser');
-
-var router = require('./routes/product'); // Imports routes for the products
 var app = express();
 
+var router = require('./routes/router'); 
+var bodyParser = require('body-parser');
+
+var swaggerJSDoc = require('swagger-jsdoc');
+var swaggerDefinition = {
+  info: {
+    title: 'Node Swagger API',
+    version: '1.0.0',
+    description: 'lets try',
+  },
+  host: 'localhost',
+  basePath: '/',
+};
+
+// initialize swagger-jsdoc
+var swaggerSpec = swaggerJSDoc({
+ // import swaggerDefinitions
+ swaggerDefinition: swaggerDefinition,
+ // path to the API docs
+ apis: ['./routes/*.js'],
+});
+
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
