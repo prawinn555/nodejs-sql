@@ -2,7 +2,7 @@ var Product = require('../models/product');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
-    res.send('Greetings from the Test controller!');
+    res.send('Hello !! from the Test controller!');
 };
 
 exports.product_create = function (req, res) {
@@ -27,6 +27,14 @@ exports.product_details = function (req, res) {
         res.send(product);
     })
 };
+
+exports.product_list = function (req, res) {
+    Product.find( {}, function (err, products) {
+        if (err) return next(err);
+        res.send(products);
+    })
+};
+
 
 exports.product_update = function (req, res) {
     Product.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
