@@ -13,8 +13,8 @@ var product_controller = require('../controllers/product');
  *     properties:
  *       name:
  *         type: string
- *       breed:
- *         type: string
+ *       price:
+ *         type: integer
  */
 
 /**
@@ -37,19 +37,64 @@ router.get('/test', product_controller.test);
  * /products:
  *   get:
  *     tags:
- *       - List products
+ *       - Product management
  *     description: Returns all produits
  *     produces:
  *       - application/json
  *     responses:
  *       200:
  *         description: An array of products
- *           $ref: '#/definitions/Product'
+ *         $ref: '#/definitions/Product'
  */
 router.get('/products', product_controller.product_list);
 
+/**
+ * @swagger
+ * /products/create:
+ *   get:
+ *     tags:
+ *       - Product management
+ *     description: Create a new product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: Product name
+ *         in: body
+ *         required: true
+ *         type: string
+  *       - name: name
+ *         description: Product name
+ *         in: body
+ *         required: true
+ *         type: integer
+ *     responses:
+ *       200:
+ *         description: Result
+ */
 router.post('/products/create', product_controller.product_create);
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     tags:
+ *       - Product management
+ *     description: Returns a single product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: Product id
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: A single puppy
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ */
 router.get('/products/:id', product_controller.product_details);
 
 router.put('/products/:id/update', product_controller.product_update);
