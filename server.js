@@ -1,33 +1,12 @@
 
-var express = require('express');
-var app = express();
+// app.js
 
-var router = require('./routes/router'); 
+var express = require('express');
 var bodyParser = require('body-parser');
 
-var swaggerJSDoc = require('swagger-jsdoc');
-var swaggerDefinition = {
-  info: {
-    title: 'Node Swagger API',
-    version: '1.0.0',
-    description: 'lets try',
-  },
-  host: 'localhost',
-  basePath: '/',
-};
+var product = require('./routes/product'); // Imports routes for the products
+var app = express();
 
-// initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc({
- // import swaggerDefinitions
- swaggerDefinition: swaggerDefinition,
- // path to the API docs
- apis: ['./routes/*.js'],
-});
-
-app.get('/swagger.json', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
-});
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
@@ -41,8 +20,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/', router);
-app.use(express.static('static'));
+app.use('/products', product);
 
 var port = 1234;
 
