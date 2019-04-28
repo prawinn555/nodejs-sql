@@ -87,14 +87,59 @@ router.post('/products/create', product_controller.product_create);
  *         type: string
  *     responses:
  *       200:
- *         description: A single puppy
+ *         description: A single product
  *         schema:
  *           $ref: '#/definitions/Product'
  */
 router.get('/products/:id', product_controller.product_details);
 
+
+/**
+ * @swagger
+ * /products/{id}/update:
+ *   put:
+ *     tags:
+ *       - Product management
+ *     description: Update a product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: Product id
+ *         in: path
+ *         required: true
+ *         type: string
+ *       - name: product
+ *         description: product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
+ *     responses:
+ *       200:
+ *         description: result
+ */
 router.put('/products/:id/update', product_controller.product_update);
 
+/**
+ * @swagger
+ * /products/{id}/delete:
+ *   delete:
+ *     tags:
+ *       - Product management
+ *     description: Delete a product
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: Product id
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: result
+ */
 router.delete('/products/:id/delete', product_controller.product_delete);
 
 
