@@ -29,9 +29,9 @@ exports.product_details = function (req, res) {
 };
 
 exports.product_list = function (req, res) {
-    Product.findById(req.params.id, function (err, product) {
+    Product.find( {}, function (err, products) {
         if (err) return next(err);
-        res.send(product);
+        res.send(products);
     })
 };
 
