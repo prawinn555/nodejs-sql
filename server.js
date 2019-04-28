@@ -30,7 +30,9 @@ app.get('/swagger.json', function(req, res) {
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
-// mongodb+srv://test:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true
+mongoose.set('useFindAndModify', false);
+
+// database URL
 var dev_db_url = 'mongodb+srv://test:test@cluster0-bs8m2.mongodb.net/test?retryWrites=true';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);

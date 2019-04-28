@@ -42,7 +42,7 @@ exports.product_list = function (req, res, next) {
 exports.product_update = function (req, res, next) {
     Product.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
         if (err) return next(err);
-        res.send('Product udpated.');
+        res.send('Product updated');
     });
 };
 
