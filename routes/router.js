@@ -6,19 +6,29 @@ const path = require('path');
 var product_controller = require('../controllers/product');
 
 
+/**
+ * @swagger
+ * definitions:
+ *   Product:
+ *     properties:
+ *       name:
+ *         type: string
+ *       breed:
+ *         type: string
+ */
 
 /**
  * @swagger
  * /test:
  *   get:
  *     tags:
- *       - Test
- *     description: Tester si la réponse du controlleur
+ *       - Test greetings
+ *     description: Test the response of the controller
  *     produces:
  *       - text
  *     responses:
  *       200:
- *         description: Greetings du controlleur
+ *         description: Greeting message
  */
 router.get('/test', product_controller.test);
 
@@ -27,15 +37,14 @@ router.get('/test', product_controller.test);
  * /products:
  *   get:
  *     tags:
- *       - Produits
+ *       - List products
  *     description: Returns all produits
  *     produces:
  *       - application/json
  *     responses:
  *       200:
- *         description: An array of puppies
- *         schema:
- *           $ref: '#/definitions/Puppy'
+ *         description: An array of products
+ *           $ref: '#/definitions/Product'
  */
 router.get('/products', product_controller.product_list);
 
