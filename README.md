@@ -20,7 +20,7 @@ With Mongoose framework, you will see that the code to read/write objects in dat
 
 ## Online live demo
 
-Visit [Live demo](https://prawinn555-nodejsdemo.glitch.me/), powered by Glitch
+Visit [Live demo](https://nodejsdemo.glitch.me/), powered by Glitch
 
 ## Code
 
