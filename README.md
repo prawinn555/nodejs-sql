@@ -46,11 +46,11 @@ npm install
  
 ```
 
-* Change your database URL in the file "server.js"
+* Change your database URL in the file .env. 
 
 
 ```
-var dev_db_url = 'mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true';
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true'
 
 ```
 

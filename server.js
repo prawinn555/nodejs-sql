@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 
+
 var router = require('./routes/router'); 
 var bodyParser = require('body-parser');
 
@@ -34,8 +35,7 @@ var mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 
 // database URL
-var dev_db_url = 'mongodb+srv://test:test@cluster0-bs8m2.mongodb.net/test?retryWrites=true';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
