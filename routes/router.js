@@ -51,7 +51,7 @@ router.get('/products', product_controller.product_list);
 /**
  * @swagger
  * /products/create:
- *   get:
+ *   put:
  *     tags:
  *       - Product management
  *     description: Create a new product
@@ -63,11 +63,13 @@ router.get('/products', product_controller.product_list);
  *         in: body
  *         required: true
  *         type: string
-  *       - name: name
- *         description: Product name
+ *         example: Cookies
+  *       - name: price
+ *         description: Product price
  *         in: body
  *         required: true
  *         type: integer
+ *         example: 200
  *     responses:
  *       200:
  *         description: Result
