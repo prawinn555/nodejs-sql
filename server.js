@@ -1,7 +1,7 @@
 
 var express = require('express');
 var app = express();
-
+require('dotenv').config()
 
 var router = require('./routes/router'); 
 var bodyParser = require('body-parser');
