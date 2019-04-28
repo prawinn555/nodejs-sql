@@ -20,17 +20,11 @@ With Mongoose framework, you will see that the code to read/write objects in dat
 
 ## Online live demo
 
-Visit this page
-
-https://prawinn555-nodejsdemo.glitch.me/
-
-Powered by Glitch
+Visit [Live demo](https://prawinn555-nodejsdemo.glitch.me/), powered by Glitch
 
 ## Code
 
-From Github
-
-https://github.com/prawinn555/nodejsdemo
+From [Github](https://github.com/prawinn555/nodejsdemo)
 
 
 ## Installation
@@ -39,7 +33,7 @@ https://github.com/prawinn555/nodejsdemo
 ### Prerequisites
 
 * Install NodeJS
-* create a free MongoDB cluster https://www.mongodb.com/cloud/atlas  
+* create a free MongoDB cluster @ [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 
 ### Installation
