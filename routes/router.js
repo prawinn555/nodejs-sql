@@ -60,13 +60,13 @@ router.get('/products', product_controller.product_list);
  *     requestBody:
  *       content:
  *         'application/x-www-form-urlencoded':
- *       schema:
- *         properties:
- *         name: 
- *            description: product name
- *            type: string
- *         price: 
- *            description: price
+ *           schema:
+ *             properties:
+ *               name: 
+ *                 description: product name
+ *                 type: string
+ *               price: 
+ *                 description: price
  *            type: integer
  *     responses:
  *       200:
