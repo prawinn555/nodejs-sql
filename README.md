@@ -32,7 +32,6 @@ From Github
 
 https://github.com/prawinn555/nodejsdemo
 
-( branche glitch )
 
 ## Installation
 
@@ -46,15 +45,29 @@ https://github.com/prawinn555/nodejsdemo
 ### Installation
 
 
-
-
+```
+git clone https://github.com/prawinn555/nodejsdemo
 cd nodejsdemo/
+npm install
+ 
+```
+
+* Change your database URL in the file "server.js"
 
 
-* 
+```
+var dev_db_url = 'mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true';
 
+```
+
+* Run the application
+
+```
+node server.js
+ 
+```
 
 ## Acknowledgments
 
-* Framework contributors
+* All framework contributors
 * Online tutorials (https://codeburst.io/@es1amaged)
