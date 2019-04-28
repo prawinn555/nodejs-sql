@@ -57,20 +57,16 @@ router.get('/products', product_controller.product_list);
  *     description: Create a new product
  *     produces:
  *       - application/json
- *     requestBody:
- *       content:
- *         'application/x-www-form-urlencoded':
- *           schema:
- *             properties:
- *               name: 
- *                 description: product name
- *                 type: string
- *               price: 
- *                 description: price
- *            type: integer
+ *     parameters:
+ *       - name: product
+ *         description: product object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
  *     responses:
  *       200:
- *         description: Result
+ *         description: Result 
  */
 router.post('/products/create', product_controller.product_create);
 

@@ -38,9 +38,14 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+// the body of the request POST/PUT will be parsed as json.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// map paths to different functions
 app.use('/', router);
+
+// search static files in 'static' directories
 app.use(express.static('static'));
 
 var port = 1234;

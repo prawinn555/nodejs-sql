@@ -6,12 +6,13 @@ exports.test = function (req, res) {
 };
 
 exports.product_create = function (req, res, next) {
-    console.log('Create product ' +  req.body);
-  
+    console.log('Create product %j', req.body);
+    console.log('Create product param name=%s price=%s', 
+                req.body.name, req.body.price);
     var product = new Product(
         {
-            name: "gg",
-            price: 12
+            name: req.body.name,
+            price: req.body.price
         }
     );
 
