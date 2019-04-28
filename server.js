@@ -54,5 +54,5 @@ app.use(express.static('static'));
 var port = 1234;
 
 app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+    console.log('Server is up and running on port number ' + port);
 });
