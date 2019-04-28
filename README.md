@@ -1,8 +1,37 @@
-# Create a simple REST
-One Paragraph of project description goes here
+# Create a simple RESTful CRUD with NodeJS and MongoDB.
+
+Hi, Welcome to my project.
+Here, you will find example code to create a RESTful service, using the following frameworks
+
+* NodeJS as the server
+* MongoDB as database
+* SwaggerUI for NodeJS as the user interface to invoke the REST operations
+
+Our CRUD service allow you to
+
+* create a simple object ( product)
+* list products
+* get a product by id
+* update a product
+* delete a product
+
+
+With Mongoose framework, you will see that the code to read/write objects in database is extremely simple and concise :).
+
+## Online live demo
+
+Visit this page
+
+https://prawinn555-nodejsdemo.glitch.me/
+
+## Code
+
+From Github
+
+https://github.com/prawinn555/nodejsdemo
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
