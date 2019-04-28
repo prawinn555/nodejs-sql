@@ -10,9 +10,8 @@ var swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
     version: '1.0.0',
-    description: 'lets try',
+    description: 'Let s try',
   },
-  host: 'localhost',
   basePath: '/',
 };
 
