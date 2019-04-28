@@ -1,4 +1,4 @@
-# Create a simple RESTful CRUD with NodeJS and MongoDB.
+# Create a simple RESTful CRUD service with NodeJS and MongoDB.
 
 Hi, Welcome to my project.
 Here, you will find example code to create a RESTful service, using the following frameworks
