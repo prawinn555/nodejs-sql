@@ -2,20 +2,8 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 
-// Require the controllers WHICH WE DID NOT CREATE YET!!
 var product_controller = require('../controllers/product');
 
-
-/**
- * @swagger
- * definitions:
- *   Product:
- *     properties:
- *       name:
- *         type: string
- *       price:
- *         type: integer
- */
 
 /**
  * @swagger
@@ -88,8 +76,6 @@ router.post('/products/create', product_controller.product_create);
  *     responses:
  *       200:
  *         description: A single product
- *         schema:
- *           $ref: '#/definitions/Product'
  */
 router.get('/products/:id', product_controller.product_details);
 

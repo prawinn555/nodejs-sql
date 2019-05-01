@@ -34,10 +34,10 @@ exports.product_details = function (req, res, next) {
       console.log(err);
       res.send('error in database');
     } else { 
-      console.log("result find liste %j", rows);
+      console.log("result find by %j : %j", req.params, rows);
       res.send(rows)
     }
-  };
+  });
   
 };
 
