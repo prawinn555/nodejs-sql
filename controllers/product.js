@@ -1,4 +1,5 @@
 var db = require('../models/database');
+var SqlString = require('sqlstring');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
@@ -9,22 +10,26 @@ exports.product_create = function (req, res, next) {
     console.log('Create product %j', req.body);
     console.log('Create product param name=%s price=%s', 
                 req.body.name, req.body.price);
-    var product = new Product(
-        {
-            name: req.body.name,
-            price: req.body.price
-        }
-    );
 
-    product.save(function (err) {
-        if (err) {
-            console.log(err); res.send('Error to access Database :('); return;
-        }
-        res.send('Product Created successfully')
-    })
+  var sql    = SqlString.format('INSERT INTO mydata VALUES (?,?)',
+     [req.body.name, req.body.price]);
+    db.serialize(function() {
+      db.run(sql);
+    });
 };
 
 exports.product_details = function (req, res, next) {
+  
+  var sql    = SqlString.format('SELECT * from mydata where name=?',
+      req.params.id);
+ 
+  
+      db.each(sql, function(err, row) {
+      if ( row ) {
+          res.send(row);
+      }
+    });
+  
     Product.findById(req.params.id, function (err, product) {
         if (err) console.log(err); res.send('Error to access Database :('); return;
         res.send(product);
