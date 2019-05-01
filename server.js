@@ -29,17 +29,37 @@ app.get('/swagger.json', function(req, res) {
   res.send(swaggerSpec);
 });
 
-// Set up mongoose connection
-var mongoose = require('mongoose');
-// avoir deprecated method
-mongoose.set('useFindAndModify', false);
+// init sqlite db
+var fs = require('fs');
+var dbFile = './.data/sqlite.db';
 
-// database URL
-var mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+var exists = fs.existsSync(dbFile);
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(dbFile);
+
+
+// if ./.data/sqlite.db does not exist, create it, otherwise print records to console
+db.serialize(function(){
+  if (!exists) {
+    db.run('CREATE TABLE data (name TEXT, time TEXT)');
+    console.log('New table Dreams created!');
+    
+    // insert default dreams
+    db.serialize(function() {
+      db.run('INSERT INTO Dreams (dream) VALUES ("Find and count some sheep"), ("Climb a really tall mountain"), ("Wash the dishes")');
+    });
+  }
+  else {
+    console.log('Database "Dreams" ready to go!');
+    db.each('SELECT * from Dreams', function(err, row) {
+      if ( row ) {
+        console.log('record:', row);
+      }
+    });
+  }
+});
+
 
 // the body of the request POST/PUT will be parsed as json.
 app.use(bodyParser.json());
