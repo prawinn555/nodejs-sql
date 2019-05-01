@@ -5,6 +5,8 @@ const path = require('path');
 var product_controller = require('../controllers/product');
 
 
+
+
 /**
  * @swagger
  * /test:
@@ -32,7 +34,6 @@ router.get('/test', product_controller.test);
  *     responses:
  *       200:
  *         description: An array of products
- *         $ref: '#/definitions/Product'
  */
 router.get('/products', product_controller.product_list);
 
@@ -50,8 +51,6 @@ router.get('/products', product_controller.product_list);
  *         description: product object
  *         in: body
  *         required: true
- *         schema:
- *           $ref: '#/definitions/Product'
  *     responses:
  *       200:
  *         description: Result 
@@ -99,8 +98,6 @@ router.get('/products/:id', product_controller.product_details);
  *         description: product object
  *         in: body
  *         required: true
- *         schema:
- *           $ref: '#/definitions/Product'
  *     responses:
  *       200:
  *         description: result
