@@ -32,14 +32,13 @@ exports.product_details = function (req, res, next) {
   
 };
 
-exports.product_list = function (req, res, next) {
+exports.product_list = function (req, res, next) {;
+  console.log('find all');
   var sql    = SqlString.format('SELECT * from mydata',
       req.params.id);
-  db.each(sql, function(err, row) {
-      if ( row ) {
-          res.send(row);
-      }
-    });
+  db.all(sql,[],(err, rows ) => {
+      res.send(rows)
+  });
 };
 
 

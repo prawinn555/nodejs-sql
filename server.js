@@ -1,7 +1,6 @@
 
 var express = require('express');
-var app = express();
-require('dotenv').config()
+var app = express(); 
 
 var router = require('./routes/router'); 
 var bodyParser = require('body-parser');
@@ -13,7 +12,7 @@ var swaggerDefinition = {
     version: '1.0.0',
     description: 'Let s try',
   },
-  basePath: '/',
+  basePath: '/', 
 };
 
 // initialize swagger-jsdoc
