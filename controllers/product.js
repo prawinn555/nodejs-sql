@@ -19,7 +19,7 @@ exports.product_create = function (req, res, next) {
       console.log(err);
       res.send('error in database');
     } else { 
-      res.sen('A row has been inserted with rowid ${this.lastID}');
+      res.send('A row has been inserted with rowid ${this.lastID}');
     }
   });
 };
@@ -30,8 +30,14 @@ exports.product_details = function (req, res, next) {
       req.params.id);
  
   db.all(sql,[],(err, rows ) => {
+    if (err) {
+      console.log(err);
+      res.send('error in database');
+    } else { 
+      console.log("result find liste %j", rows);
       res.send(rows)
-  });
+    }
+  };
   
 };
 
@@ -40,7 +46,14 @@ exports.product_list = function (req, res, next) {;
   var sql    = SqlString.format('SELECT * from mydata',
       req.params.id);
   db.all(sql,[],(err, rows ) => {
+    if (err) {
+      console.log(err);
+      res.send('error in database');
+    } else { 
+      console.log("result find liste %j", rows);
       res.send(rows)
+    }
+
   });
 };
 
@@ -53,7 +66,7 @@ exports.product_update = function (req, res, next) {
       console.log(err);
       res.send('error in database');
     } else { 
-      res.sen('OK');
+      res.send('OK');
     }
   });
 };
@@ -66,7 +79,7 @@ exports.product_delete = function (req, res, next) {
       console.log(err);
       res.send('error in database');
     } else { 
-      res.sen('OK');
+      res.send('OK');
     }
   });;
 };
