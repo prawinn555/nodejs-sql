@@ -14,6 +14,10 @@ db.serialize(function(){
     db.run('CREATE TABLE mydata (name TEXT, time TEXT)');
     console.log('New table created!');
     
+    var sql    = 'INSERT INTO mydata VALUES ("a", "b"), ("c", "d")';
+    db.serialize(function() {
+      db.run(sql);
+    });
   }
   else {
     console.log('Database ready to go!');
