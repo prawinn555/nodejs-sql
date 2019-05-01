@@ -1,4 +1,4 @@
-var Product = require('../models/product');
+var db = require('../models/database');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
