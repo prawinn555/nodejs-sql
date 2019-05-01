@@ -9,18 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "mongoose": "^5.5.4",
-    "swagger-jsdoc": "^1.3.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prawinn555/nodejsdemo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/prawinn555/nodejsdemo/issues"
-  },
-  "homepage": "https://github.com/prawinn555/nodejsdemo#readme"
+    "body-parser": "1.19.0",
+    "express": "4.16.4",
+    "swagger-jsdoc": "1.3.0"
+  }
 }

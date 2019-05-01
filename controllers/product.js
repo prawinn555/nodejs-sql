@@ -49,12 +49,14 @@ exports.product_update = function (req, res, next) {
     db.serialize(function() {
       db.run(sql);
     });
-  res.send('Deleted successfully!');
+    res.send('OK');
 };
 
 exports.product_delete = function (req, res, next) {
-    Product.findByIdAndRemove(req.params.id, function (err) {
-        if (err) console.log(err); res.send('Error to access Database :('); return;
-        res.send('Deleted successfully!');
-    })
+    var sql    = SqlString.format('DELETE FROM mydata where name=?',
+     [req.body.name, req.body.price,req.params.id]);
+    db.serialize(function() {
+      db.run(sql);
+    });
+    res.send('OK');
 };
