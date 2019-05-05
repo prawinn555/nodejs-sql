@@ -43,6 +43,9 @@ exports.product_details = function (req, res, next) {
 
 exports.product_list = function (req, res, next) {;
   console.log('find all');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                                                  
   var sql    = SqlString.format('SELECT * from mydata',
       req.params.id);
   db.all(sql,[],(err, rows ) => {
