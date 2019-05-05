@@ -54,6 +54,7 @@ exports.product_list = function (req, res, next) {;
       res.send('error in database');
     } else { 
       console.log("result find liste %j", rows);
+      res.status(200)
       res.send(rows)
     }
 
