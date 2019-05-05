@@ -5,7 +5,7 @@ var dbFile = './.data/sqlite.db';
 
 var exists = fs.existsSync(dbFile);
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(dbFile);
+var db = new sqlite3.Database(dbFile); 
 
 
 // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
@@ -14,7 +14,7 @@ db.serialize(function(){
     db.run('CREATE TABLE mydata (name TEXT, time TEXT)');
     console.log('New table created!');
     
-    var sql    = 'INSERT INTO mydata VALUES ("Mike\'s Birthday", "11 jan 2019"), ("Mike\'s Birthday", "11 jan 2019")';
+    var sql    = 'INSERT INTO mydata VALUES ("Mike\'s Birthday", "11 Jan 2019"), ("Sophie\'s Birthday", "14 Mar 2019")';
     db.serialize(function() {
       db.run(sql);
     });

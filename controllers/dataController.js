@@ -42,9 +42,11 @@ exports.product_details = function (req, res, next) {
 };
 
 exports.product_list = function (req, res, next) {;
-  console.log('find by %j', req.query);
-
-  var str = (req.query.searchName===undefined)?  '%' : '%'+req.query.searchName +'%';
+  console.log('find by ' +);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+  var str = (req.params.searchName===undefined)?  '%' : '%'+req.params.searchName +'%';
   console.log('str '+str);
   var sql    = SqlString.format('SELECT * from mydata where name like ?',
       (str) );
