@@ -16,7 +16,6 @@ Our CRUD service allow you to
 * delete a product
 
 
-With Mongoose framework, you will see that the code to read/write objects in database is extremely simple and concise :).
 
 ## Online live demo
 
@@ -33,26 +32,19 @@ From [Github](https://github.com/prawinn555/nodejs-sql)
 ### Prerequisites
 
 * Install NodeJS
-* create a free MongoDB cluster @ [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 
 ### Installation
 
 
 ```
-git clone https://github.com/prawinn555/nodejsdemo
-cd nodejsdemo/
+git clone https://github.com/prawinn555/nodejs-sql
+cd nodejs-sql/
 npm install
  
 ```
 
-* Change your database URL in the file .env. 
 
-
-```
-MONGODB_URI=mongodb+srv://<user>:<password>@cluster0-bs8m2.mongodb.net/test?retryWrites=true
-
-```
 
 * Run the application
 
