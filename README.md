@@ -1,10 +1,10 @@
-# Create a simple RESTful CRUD service with NodeJS and MongoDB.
+# Create a simple RESTful CRUD service with NodeJS.
 
 Hi, Welcome to my project.
 Here, you will find example code to create a RESTful service, using the following frameworks
 
 * NodeJS as the server
-* MongoDB as database
+* SQLite as database
 * SwaggerUI for NodeJS as the user interface to invoke the REST operations
 
 Our CRUD service allow you to
@@ -20,11 +20,11 @@ With Mongoose framework, you will see that the code to read/write objects in dat
 
 ## Online live demo
 
-Visit [Live demo](https://nodejsdemo.glitch.me/), powered by Glitch
+Visit [Live demo](https://nodejs-sql.glitch.me/), powered by Glitch
 
 ## Code
 
-From [Github](https://github.com/prawinn555/nodejsdemo)
+From [Github](https://github.com/prawinn555/nodejs-sql)
 
 
 ## Installation

@@ -45,9 +45,11 @@ exports.product_list = function (req, res, next) {;
   console.log('find all');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                                                  
-  var sql    = SqlString.format('SELECT * from mydata',
-      req.params.id);
+  
+  var str = '%'+req.params.searchName +'%';
+  console.log('str '+str);
+  var sql    = SqlString.format('SELECT * from mydata where name like ?',
+      (str) );
   db.all(sql,[],(err, rows ) => {
     if (err) {
       console.log(err);
