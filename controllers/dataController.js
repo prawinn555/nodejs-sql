@@ -8,18 +8,18 @@ exports.test = function (req, res) {
 
 exports.product_create = function (req, res, next) {
   console.log('Create product %j', req.body);
-  console.log('Create product param name=%s price=%s', 
-                req.body.name, req.body.price);
+  console.log('Create product param name=%s data=%s', 
+                req.body.name, req.body.data);
 
   var sql    = SqlString.format('INSERT INTO mydata VALUES (?,?)',
-     [req.body.name, req.body.price]);
+     [req.body.name, req.body.data]);
   
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);
       res.send('error in database');
     } else { 
-      res.send('A row has been inserted with rowid ${this.lastID}');
+      res.send(`A row has been inserted with rowid ${this.lastID}`);
     }
   });
 };
@@ -71,7 +71,7 @@ exports.product_list = function (req, res, next) {;
 
 exports.product_update = function (req, res, next) {
   var sql    = SqlString.format('UPDATE mydata VALUES set name=?, data=? where name=?',
-     [req.body.name, req.body.price,req.params.id]);
+     [req.body.name, req.body.data,req.params.id]);
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);
@@ -84,7 +84,7 @@ exports.product_update = function (req, res, next) {
 
 exports.product_delete = function (req, res, next) {
   var sql    = SqlString.format('DELETE FROM mydata where name=?',
-     [req.body.name, req.body.price,req.params.id]);
+     [req.body.name, req.body.data,req.params.id]);
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);

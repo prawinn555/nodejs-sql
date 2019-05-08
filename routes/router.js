@@ -4,7 +4,16 @@ const path = require('path');
 
 var product_controller = require('../controllers/dataController');
 
-
+/**
+ * @swagger
+ * definitions:
+ *   Product:
+ *     properties:
+ *       name:
+ *         type: string
+ *       data:
+ *         type: string
+ */
 
 
 /**
@@ -48,9 +57,10 @@ router.get('/products', product_controller.product_list);
  *       - application/json
  *     parameters:
  *       - name: product
- *         description: product object
  *         in: body
  *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
  *     responses:
  *       200:
  *         description: Result 
