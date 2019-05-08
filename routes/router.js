@@ -71,7 +71,7 @@ router.post('/products/create', product_controller.product_create);
 
 /**
  * @swagger
- * /products/{id}:
+ * /products/{name}:
  *   get:
  *     tags:
  *       - Product management
@@ -79,8 +79,8 @@ router.post('/products/create', product_controller.product_create);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
- *         description: Product id
+ *       - name: name
+ *         description: unique name
  *         in: path
  *         required: true
  *         type: string
@@ -88,7 +88,7 @@ router.post('/products/create', product_controller.product_create);
  *       200:
  *         description: A single product
  */
-router.get('/products/:id', product_controller.product_details);
+router.get('/products/:name', product_controller.product_details);
 
 
 /**
@@ -115,7 +115,7 @@ router.put('/products/update', product_controller.product_update);
 
 /**
  * @swagger
- * /products/{id}/delete:
+ * /products/{name}/delete:
  *   delete:
  *     tags:
  *       - Product management
@@ -123,8 +123,8 @@ router.put('/products/update', product_controller.product_update);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
- *         description: Product id
+ *       - name: name
+ *         description: unique name
  *         in: path
  *         required: true
  *         type: string
@@ -132,7 +132,7 @@ router.put('/products/update', product_controller.product_update);
  *       200:
  *         description: result
  */
-router.delete('/products/:id/delete', product_controller.product_delete);
+router.delete('/products/:name/delete', product_controller.product_delete);
 
 
 module.exports = router;

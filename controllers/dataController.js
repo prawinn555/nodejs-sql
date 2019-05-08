@@ -10,8 +10,16 @@ exports.product_create = function (req, res, next) {
   console.log('Create product %j', req.body);
   console.log('Create product param name=%s data=%s', 
                 req.body.name, req.body.data);
-  // TODO control the unicity of name.
-  var sql    = SqlString.format('INSERT INTO mydata (name, description, data) VALUES (?,?)',
+  var sql    = SqlString.format('DELETE FROM mydata where name=?',
+     [req.params.name]);
+  db.run(sql, [], function(err) {
+    if (err) {
+      console.log(err);
+    } else { 
+    }
+  });
+  
+  sql    = SqlString.format('INSERT INTO mydata (name, description, data) VALUES (?,?)',
      [req.body.name, req.body.description, req.body.data]);
   
   db.run(sql, [], function(err) {
@@ -27,7 +35,7 @@ exports.product_create = function (req, res, next) {
 exports.product_details = function (req, res, next) {
   
    var sql    = SqlString.format('SELECT * from mydata where name=?',
-      req.params.id);
+      req.params.name);
  
   db.all(sql,[],(err, rows ) => {
     if (err) {
@@ -84,7 +92,7 @@ exports.product_update = function (req, res, next) {
 
 exports.product_delete = function (req, res, next) {
   var sql    = SqlString.format('DELETE FROM mydata where name=?',
-     [req.params.id]);
+     [req.params.name]);
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);
@@ -92,5 +100,5 @@ exports.product_delete = function (req, res, next) {
     } else { 
       res.send('OK');
     }
-  });;
+  });
 };
