@@ -11,8 +11,8 @@ exports.product_create = function (req, res, next) {
   console.log('Create product param name=%s data=%s', 
                 req.body.name, req.body.data);
   // TODO control the unicity of name.
-  var sql    = SqlString.format('INSERT INTO mydata VALUES (?,?)',
-     [req.body.name, req.body.data]);
+  var sql    = SqlString.format('INSERT INTO mydata (name, description, data) VALUES (?,?)',
+     [req.body.name, req.body.description, req.body.data]);
   
   db.run(sql, [], function(err) {
     if (err) {
@@ -70,8 +70,8 @@ exports.product_list = function (req, res, next) {;
 
 
 exports.product_update = function (req, res, next) {
-  var sql    = SqlString.format('UPDATE mydata set name=?, data=? where name=?',
-     [req.body.name, req.body.data, req.body.name]);
+  var sql    = SqlString.format('UPDATE mydata set name=?, description=?, data=? where name=?',
+     [req.body.name, req.body.description, req.body.data, req.body.name]);
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);

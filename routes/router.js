@@ -11,6 +11,8 @@ var product_controller = require('../controllers/dataController');
  *     properties:
  *       name:
  *         type: string
+ *       description:
+ *         type: string
  *       data:
  *         type: string
  */
