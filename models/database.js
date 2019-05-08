@@ -14,9 +14,11 @@ db.serialize(function(){
     db.run('CREATE TABLE mydata (name TEXT, description TEXT, data TEXT)');
     console.log('New table created!');
     
-    var sql    = `INSERT INTO mydata (name, description) VALUES ("Mike\'s Birthday", "11 Jan 2019"), 
-          ("Sophie\'s Birthday", "14 Mar 2019"),
-          ("Joe\'s Birthday", "15 Mar 2019")`;
+    var sql    = `INSERT INTO mydata (name, description) VALUES 
+          ("create-product-sequence", "Sequence of calls to create a product"), 
+          ("product-database", "Entity relationship diagram to manage products"),
+          ("order-database", "Entity relationship diagram to manage orders")
+          `;
     db.serialize(function() {
       db.run(sql);
     });
