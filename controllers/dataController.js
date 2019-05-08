@@ -70,7 +70,7 @@ exports.product_list = function (req, res, next) {;
 
 
 exports.product_update = function (req, res, next) {
-  var sql    = SqlString.format('UPDATE mydata VALUES set name=?, time=? where name=?',
+  var sql    = SqlString.format('UPDATE mydata VALUES set name=?, data=? where name=?',
      [req.body.name, req.body.price,req.params.id]);
   db.run(sql, [], function(err) {
     if (err) {
