@@ -10,19 +10,13 @@ exports.product_create = function (req, res, next) {
   console.log('Create product %j', req.body);
   console.log('Create product param name=%s data=%s', 
                 req.body.name, req.body.data);
-  var sql    = SqlString.format('DELETE FROM mydata where name=?',
-     [req.params.name]);
-  db.run(sql, [], function(err) {
-    if (err) {
-      console.log(err);
-    } else { 
-    }
-  });
+
   
-  sql    = SqlString.format('INSERT INTO mydata (name, description, data) VALUES (?,?)',
-     [req.body.name, req.body.description, req.body.data]);
+  var sql    = SqlString.format(`DELETE FROM mydata where name=?;
+       INSERT INTO mydata (name, description, data) VALUES (?,?);`,
+     [req.body.name, req.body.name, req.body.description, req.body.data]);
   
-  db.run(sql, [], function(err) {
+  db.exec(sql, function(err) {
     if (err) {
       console.log(err);
       res.send('error in database');
