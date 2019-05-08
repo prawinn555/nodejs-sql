@@ -91,7 +91,7 @@ router.get('/products/:id', product_controller.product_details);
 
 /**
  * @swagger
- * /products/{id}/update:
+ * /products/update:
  *   put:
  *     tags:
  *       - Product management
@@ -99,20 +99,17 @@ router.get('/products/:id', product_controller.product_details);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
- *         description: Product id
- *         in: path
- *         required: true
- *         type: string
  *       - name: product
  *         description: product object
  *         in: body
  *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Product'
  *     responses:
  *       200:
  *         description: result
  */
-router.put('/products/:id/update', product_controller.product_update);
+router.put('/products/update', product_controller.product_update);
 
 /**
  * @swagger
