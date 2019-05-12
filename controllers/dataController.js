@@ -78,7 +78,13 @@ exports.product_list = function (req, res, next) {;
 };
 
 function prepareResponseHeader(res) {
-  
+  /*
+  Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
+  Access-Control-Allow-Methods: GET, PUT, POST, DELETE, HEAD
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: date,content-type,content-length,connection,x-powered-by,access-control-allow-origin,access-control-allow-headers,access-control-allow-methods,etag,x-final-url
+
+*/ 
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD");
