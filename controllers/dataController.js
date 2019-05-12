@@ -7,6 +7,11 @@ exports.test = function (req, res) {
 };
 
 exports.product_create = function (req, res, next) {
+  
+ 
+  prepareResponseHeader(res);
+  
+  
   console.log('Create product %j', req.body);
   console.log('Create product param name=%s data=%s', 
                 req.body.name, req.body.data);
@@ -29,6 +34,8 @@ exports.product_create = function (req, res, next) {
 
 exports.product_details = function (req, res, next) {
   
+  prepareResponseHeader(res); 
+  
    var sql    = SqlString.format('SELECT * from mydata where name=?',
       req.params.name);
  
@@ -46,9 +53,8 @@ exports.product_details = function (req, res, next) {
 
 exports.product_list = function (req, res, next) {;
 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  
+  prepareResponseHeader(res);
+                                                  
   console.log('find by %j', req.query);
 
   var searchName = req.query.searchName;                                                
@@ -71,8 +77,15 @@ exports.product_list = function (req, res, next) {;
   });
 };
 
+function prepareResponseHeader(res) {
+  
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+}
 
 exports.product_update = function (req, res, next) {
+  prepareResponseHeader(res);
+  
   var sql    = SqlString.format('UPDATE mydata set name=?, description=?, data=? where name=?',
      [req.body.name, req.body.description, req.body.data, req.body.name]);
   db.run(sql, [], function(err) {
@@ -86,6 +99,8 @@ exports.product_update = function (req, res, next) {
 };
 
 exports.product_delete = function (req, res, next) {
+  prepareResponseHeader(res);
+  
   var sql    = SqlString.format('DELETE FROM mydata where name=?',
      [req.params.name]);
   db.run(sql, [], function(err) {
