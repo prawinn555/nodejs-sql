@@ -9,11 +9,11 @@ Here, you will find example code to create a RESTful service, using the followin
 
 Our CRUD service allow you to
 
-* create a simple object ( product)
-* list products
-* get a product by id
-* update a product
-* delete a product
+* create a simple object
+* list items
+* get a item by id
+* update a item
+* delete a item
 
 
 
