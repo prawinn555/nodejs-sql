@@ -19,7 +19,7 @@ Our CRUD service allow you to
 
 ## Online live demo
 
-Visit [Live demo](https://nodejs-sql.glitch.me/), powered by Glitch
+Visit [Live demo](https://generic-db.glitch.me/), powered by Glitch
 
 ## Code
 
