@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 
-var product_controller = require('../controllers/dataController');
+var item_controller = require('../controllers/dataController');
 
 /**
  * @swagger
  * definitions:
- *   Product:
+ *   item:
  *     properties:
  *       name:
  *         type: string
@@ -31,51 +31,51 @@ var product_controller = require('../controllers/dataController');
  *       200:
  *         description: Greeting message
  */
-router.get('/test', product_controller.test);
+router.get('/test', item_controller.test);
 
 /**
  * @swagger
- * /products:
+ * /items:
  *   get:
  *     tags:
- *       - Product management
+ *       - item management
  *     description: Returns all produits
  *     produces:
  *       - application/json
  *     responses:
  *       200:
- *         description: An array of products
+ *         description: An array of items
  */
-router.get('/products', product_controller.product_list);
+router.get('/items', item_controller.item_list);
 
 /**
  * @swagger
- * /products/create:
+ * /items/create:
  *   post:
  *     tags:
- *       - Product management
- *     description: Create a new product
+ *       - item management
+ *     description: Create a new item
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: product
+ *       - name: item
  *         in: body
  *         required: true
  *         schema:
- *           $ref: '#/definitions/Product'
+ *           $ref: '#/definitions/item'
  *     responses:
  *       200:
  *         description: Result 
  */
-router.post('/products/create', product_controller.product_create);
+router.post('/items/create', item_controller.item_create);
 
 /**
  * @swagger
- * /products/{name}:
+ * /items/{name}:
  *   get:
  *     tags:
- *       - Product management
- *     description: Returns a single product
+ *       - item management
+ *     description: Returns a single item
  *     produces:
  *       - application/json
  *     parameters:
@@ -86,40 +86,40 @@ router.post('/products/create', product_controller.product_create);
  *         type: string
  *     responses:
  *       200:
- *         description: A single product
+ *         description: A single item
  */
-router.get('/products/:name', product_controller.product_details);
+router.get('/items/:name', item_controller.item_details);
 
 
 /**
  * @swagger
- * /products/update:
+ * /items/update:
  *   put:
  *     tags:
- *       - Product management
- *     description: Update a product
+ *       - item management
+ *     description: Update a item
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: product
- *         description: product object
+ *       - name: item
+ *         description: item object
  *         in: body
  *         required: true
  *         schema:
- *           $ref: '#/definitions/Product'
+ *           $ref: '#/definitions/item'
  *     responses:
  *       200:
  *         description: result
  */
-router.put('/products/update', product_controller.product_update);
+router.put('/items/update', item_controller.item_update);
 
 /**
  * @swagger
- * /products/{name}/delete:
+ * /items/{name}/delete:
  *   delete:
  *     tags:
- *       - Product management
- *     description: Delete a product
+ *       - item management
+ *     description: Delete a item
  *     produces:
  *       - application/json
  *     parameters:
@@ -132,7 +132,7 @@ router.put('/products/update', product_controller.product_update);
  *       200:
  *         description: result
  */
-router.delete('/products/:name/delete', product_controller.product_delete);
+router.delete('/items/:name/delete', item_controller.item_delete);
 
 
 module.exports = router;
