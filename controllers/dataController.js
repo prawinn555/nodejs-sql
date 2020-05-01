@@ -9,7 +9,6 @@ exports.test = function (req, res) {
 
 exports.item_save = async function (req, res, next) {
   
-  prepareResponseHeader(res);
   
   console.log('Create item %j', req.body);
 
@@ -36,12 +35,14 @@ exports.item_save = async function (req, res, next) {
 
 function sendError(response, err) {
    console.info(err);
+   prepareResponseHeader(response);
    response.send({ 
       status : 'ERR', 
       message : 'error in database ' +err });
 }
 
 function sendOk(response, msg) {
+   prepareResponseHeader(response);
    response.send({ 
       status : 'OK', 
       message : msg });
@@ -73,7 +74,6 @@ async function executeSqlChange(sql) {
 
 exports.item_details = function (req, res, next) {
   
-  prepareResponseHeader(res); 
   
   var sql    = SqlString.format('SELECT * from mydata where id=?',
       req.params.id);
@@ -84,6 +84,7 @@ exports.item_details = function (req, res, next) {
       sendError(res, err);
     } else { 
       console.log("result find by %j : %j", req.params, rows);
+      prepareResponseHeader(res);
       res.send(rows)
     }
   });
@@ -92,7 +93,6 @@ exports.item_details = function (req, res, next) {
 
 exports.item_list = function (req, res, next) {;
 
-  prepareResponseHeader(res);
                                                   
   console.log('find by %j', req.query);
 
@@ -108,6 +108,7 @@ exports.item_list = function (req, res, next) {;
       sendError(res, err);
     } else { 
       console.log(`result find liste ${rows.length} \n %j`, rows);
+      prepareResponseHeader(res);
       res.status(200)
       res.send(rows)
     }
@@ -130,8 +131,7 @@ function prepareResponseHeader(res) {
 
 
 exports.item_delete = async function (req, res, next) {
-  prepareResponseHeader(res);
-  
+
   var sql    = SqlString.format('DELETE FROM mydata where id=?',
      [req.params.id]);
 
