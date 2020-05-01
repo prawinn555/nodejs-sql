@@ -9,11 +9,13 @@ var item_controller = require('../controllers/dataController');
  * definitions:
  *   item:
  *     properties:
- *       name:
+ *       id:
+ *         type: string
+ *       type:
  *         type: string
  *       description:
  *         type: string
- *       data:
+ *       content:
  *         type: string
  */
 
@@ -42,6 +44,12 @@ router.get('/test', item_controller.test);
  *     description: Returns all produits
  *     produces:
  *       - application/json
+*     parameters:
+ *       - name: type
+ *         description: object type, ex. MOVIE%
+ *         in: query
+ *         required: false
+ *         type: string
  *     responses:
  *       200:
  *         description: An array of items
@@ -79,8 +87,8 @@ router.post('/items/create', item_controller.item_create);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: name
- *         description: unique name
+ *       - name: id
+ *         description: unique ID
  *         in: path
  *         required: true
  *         type: string
@@ -88,7 +96,7 @@ router.post('/items/create', item_controller.item_create);
  *       200:
  *         description: A single item
  */
-router.get('/items/:name', item_controller.item_details);
+router.get('/items/:id', item_controller.item_details);
 
 
 /**
@@ -101,7 +109,7 @@ router.get('/items/:name', item_controller.item_details);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: item
+ *       - id: item
  *         description: item object
  *         in: body
  *         required: true
@@ -123,8 +131,8 @@ router.put('/items/update', item_controller.item_update);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: name
- *         description: unique name
+ *       - name: id
+ *         description: unique ID
  *         in: path
  *         required: true
  *         type: string
@@ -132,7 +140,7 @@ router.put('/items/update', item_controller.item_update);
  *       200:
  *         description: result
  */
-router.delete('/items/:name/delete', item_controller.item_delete);
+router.delete('/items/:id/delete', item_controller.item_delete);
 
 
 module.exports = router;

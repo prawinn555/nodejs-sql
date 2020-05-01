@@ -1,14 +1,16 @@
 
-var express = require('express');
-var app = express(); 
+const express = require('express');
+const app = express(); 
 
-var router = require('./routes/router'); 
-var bodyParser = require('body-parser');
+const router = require('./routes/router'); 
+const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
 
-var swaggerJSDoc = require('swagger-jsdoc');
-var swaggerDefinition = {
+
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerDefinition = {
   info: {
-    title: 'Node Swagger API',
+    title: 'Simple CRUD Service',
     version: '1.0.0',
     description: 'Let s try',
   },
@@ -16,7 +18,7 @@ var swaggerDefinition = {
 };
 
 // initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc({
+const swaggerSpec = swaggerJSDoc({
  // import swaggerDefinitions
  swaggerDefinition: swaggerDefinition,
  // path to the API docs
@@ -29,6 +31,7 @@ app.get('/swagger.json', function(req, res) {
 });
 
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 // the body of the request POST/PUT will be parsed as json.

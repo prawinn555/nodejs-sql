@@ -1,5 +1,5 @@
 {
-  "name": "productsapp",
+  "name": "simpleRestCRUDApp",
   "version": "1.0.0",
   "description": "hello",
   "main": "server.js",
@@ -11,8 +11,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
-    "sqlite3": "^4.0.6",
+    "sqlite3": "^4.2.0",
     "sqlstring": "^2.3.1",
-    "swagger-jsdoc": "^3.2.9"
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
   }
 }

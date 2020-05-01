@@ -17,20 +17,35 @@ exports.item_create = function (req, res, next) {
                 req.body.id, req.body.content);
 
   
-  var sql    = SqlString.format(`DELETE FROM mydata where id=?;`,
+  var sql    = SqlString.format(`DELETE FROM mydata where id=?`,
      [req.body.id]);
-  sql = sql + SqlString.format(`INSERT INTO mydata (id, type, description, content) VALUES (?,?,?,?);`,
-     [req.body.id, req.body.type, req.body.description, req.body.content]);
-  console.log(sql);
-  db.exec(sql, function(err) {
+  db.run(sql, function(err) {
     if (err) {
       console.log(err);
-      res.send('error in contentbase');
+      res.send('error in database');
     } else { 
-      res.send(`A row has been inserted`);
+      const replaced = this.changes>0;
+      if(replaced) {
+        console.log(`Old record deleted : ${this.changes}`);
+      }
+      doInsert(req, res, replaced);
     }
   });
 };
+
+function doInsert(req, res, replaced) {
+  var sql = SqlString.format(`INSERT INTO mydata (id, type, description, content) VALUES (?,?,?,?)`,
+     [req.body.id, req.body.type, req.body.description, req.body.content]);
+  console.log(sql);
+  db.run(sql, function(err) {
+    if (err) {
+      console.log(err);
+      res.send('error in database');
+    } else { 
+      res.send(`A row has been ${replaced? 'replaced' : 'inserted'}`);
+    }
+  });
+}
 
 exports.item_details = function (req, res, next) {
   
@@ -42,7 +57,7 @@ exports.item_details = function (req, res, next) {
   db.all(sql,[],(err, rows ) => {
     if (err) {
       console.log(err);
-      res.send('error in contentbase');
+      res.send('error in database');
     } else { 
       console.log("result find by %j : %j", req.params, rows);
       res.send(rows)
@@ -67,7 +82,7 @@ exports.item_list = function (req, res, next) {;
   db.all(sql,[],(err, rows ) => {
     if (err) {
       console.log(err);
-      res.send('error in contentbase');
+      res.send('error in database');
     } else { 
       console.log("result find liste %j", rows);
       res.status(200)
@@ -98,7 +113,7 @@ exports.item_update = function (req, res, next) {
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);
-      res.send('error in contentbase');
+      res.send('error in database');
     } else { 
       res.send('OK');
     }
@@ -113,7 +128,7 @@ exports.item_delete = function (req, res, next) {
   db.run(sql, [], function(err) {
     if (err) {
       console.log(err);
-      res.send('error in contentbase');
+      res.send('error in database');
     } else { 
       res.send('OK');
     }
