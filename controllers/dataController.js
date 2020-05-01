@@ -31,7 +31,7 @@ exports.item_save = async function (req, res, next) {
     sendOk(res, `A row has been ${replaced? 'updated' : 'inserted'}`);
 
   } catch(err) {
-      sendError(res, err);
+      sendError(res, 'DB error : ' + err);
   }
 };
 
@@ -39,7 +39,7 @@ function sendError(response, err) {
    console.info(err);
    response.send({ 
       status : 'ERR', 
-      message : 'error in database ' +err });
+      message : '' +err });
 }
 
 function sendOk(response, msg) {
@@ -81,7 +81,7 @@ exports.item_details = function (req, res, next) {
   db.all(sql,[],(err, rows ) => {
     if (err) {
       
-      sendError(res, err);
+      sendError(res, 'DB error : ' + err);
     } else { 
       console.log("result find by %j : %j", req.params, rows);
       
@@ -105,7 +105,7 @@ exports.item_list = function (req, res, next) {;
 
   db.all(sql,[],(err, rows ) => {
     if (err) {
-      sendError(res, err);
+      sendError(res, 'DB error : ' + err);
     } else { 
       console.log(`result find liste ${rows.length} \n %j`, rows);
       
@@ -130,6 +130,6 @@ exports.item_delete = async function (req, res, next) {
     sendOk(res, `Number of changes ${result.changes}`);
 
   } catch(err) {
-    sendError(res, err);
+    sendError(res, 'DB error : ' + err);
   }
 };
