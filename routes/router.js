@@ -58,7 +58,7 @@ router.get('/items', item_controller.item_list);
 
 /**
  * @swagger
- * /items/create:
+ * /items/save:
  *   post:
  *     tags:
  *       - item management
@@ -75,7 +75,7 @@ router.get('/items', item_controller.item_list);
  *       200:
  *         description: Result 
  */
-router.post('/items/create', item_controller.item_create);
+router.post('/items/save', item_controller.item_save);
 
 /**
  * @swagger
@@ -99,27 +99,6 @@ router.post('/items/create', item_controller.item_create);
 router.get('/items/:id', item_controller.item_details);
 
 
-/**
- * @swagger
- * /items/update:
- *   put:
- *     tags:
- *       - item management
- *     description: Update a item
- *     produces:
- *       - application/json
- *     parameters:
- *       - id: item
- *         description: item object
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/item'
- *     responses:
- *       200:
- *         description: result
- */
-router.put('/items/update', item_controller.item_update);
 
 /**
  * @swagger

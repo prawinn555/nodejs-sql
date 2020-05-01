@@ -1,14 +1,13 @@
 var db = require('../models/database');
 var SqlString = require('sqlstring');
 
-//Simple version, without validation or sanitation
+
 exports.test = function (req, res) {
     res.send('Hello !! from the Test controller!');
 };
 
 
-
-exports.item_create = async function (req, res, next) {
+exports.item_save = async function (req, res, next) {
   
   prepareResponseHeader(res);
   
@@ -28,7 +27,7 @@ exports.item_create = async function (req, res, next) {
     await executeSqlChange(sql);
 
     const replaced = result.changes>0;
-    res.send(`A row has been ${replaced? 'replaced' : 'inserted'}`);
+    res.send(`A row has been ${replaced? 'updated' : 'inserted'}`);
 
   } catch(err) {
       sendError(res, err);
@@ -100,7 +99,7 @@ exports.item_list = function (req, res, next) {;
   var typeCriteria = req.query.type;                                                
   var criteria = (typeCriteria===undefined || typeCriteria==='')?  '%' : typeCriteria;
   console.log('criteria '+criteria);
-  var sql    = SqlString.format('SELECT * from mydata where type like ?',
+  var sql    = SqlString.format('SELECT id, type, description from mydata where type like ?',
       (criteria) );
                                                   
 
@@ -129,20 +128,6 @@ function prepareResponseHeader(res) {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD");
 }
 
-exports.item_update = async function (req, res, next) {
-  prepareResponseHeader(res);
-  
-  var sql    = SqlString.format('UPDATE mydata set id=?, description=?, content=? where id=?',
-     [req.body.id, req.body.description, req.body.content, req.body.id]);
-
-  try {
-    var result = await executeSqlChange(sql);
-    sendOk(res, `Number of changes ${result.changes}`);
-
-  } catch(err) {
-    sendError(res, err);
-  }
-};
 
 exports.item_delete = async function (req, res, next) {
   prepareResponseHeader(res);
