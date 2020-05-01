@@ -1,5 +1,4 @@
 var db = require('../models/database');
-var SqlString = require('sqlstring');
 
 
 exports.test = function (req, res) {
@@ -17,15 +16,15 @@ exports.item_save = async function (req, res, next) {
     var result;
 
     if(!req.body.id) {
-      throw new Error("ID is required");
+      sendError(res, 'ID is required');
+      return;
     }
-    sql = SqlString.format(`DELETE FROM mydata where id=?`,
-      [req.body.id]);
-    result = await executeSqlChange(sql);
+    sql = `DELETE FROM mydata where id=?`;
+    result = await executeSqlChange(sql, [req.body.id]);
 
-    sql = SqlString.format(`INSERT INTO mydata (id, type, description, content) VALUES (?,?,?,?)`,
-     [req.body.id, req.body.type, req.body.description, req.body.content]);
-    await executeSqlChange(sql);
+    var content = req.body.content;
+    sql = `INSERT INTO mydata (id, type, description, content) VALUES (?,?,?,?)`;
+    await executeSqlChange(sql, [req.body.id, req.body.type, req.body.description, content]);
 
     const replaced = result.changes>0;
     sendOk(res, `A row has been ${replaced? 'updated' : 'inserted'}`);
@@ -52,11 +51,11 @@ function sendOk(response, msg) {
  * return Promise (number of lines changed) 
  * or throw error
  */
-async function executeSqlChange(sql) {
+async function executeSqlChange(sql, params) {
 
   return await new Promise(function(resolve, reject) {
     // console.log('SQL', sql);
-    db.run(sql, function(err) {
+    db.run(sql, params? params : [], function(err) {
       if (err) {
         
         reject(err.message);
@@ -75,10 +74,9 @@ async function executeSqlChange(sql) {
 exports.item_details = function (req, res, next) {
   
   
-  var sql    = SqlString.format('SELECT * from mydata where id=?',
-      req.params.id);
+  var sql  = 'SELECT * from mydata where id=?';
  
-  db.all(sql,[],(err, rows ) => {
+  db.all(sql,[req.params.id],(err, rows ) => {
     if (err) {
       
       sendError(res, 'DB error : ' + err);
@@ -99,11 +97,10 @@ exports.item_list = function (req, res, next) {;
   var typeCriteria = req.query.type;                                                
   var criteria = (typeCriteria===undefined || typeCriteria==='')?  '%' : typeCriteria;
   console.log('criteria '+criteria);
-  var sql    = SqlString.format('SELECT id, type, description from mydata where type like ?',
-      (criteria) );
+  var sql    = 'SELECT id, type, description from mydata where type like ?';
                                                   
 
-  db.all(sql,[],(err, rows ) => {
+  db.all(sql,[criteria],(err, rows ) => {
     if (err) {
       sendError(res, 'DB error : ' + err);
     } else { 
@@ -122,11 +119,10 @@ exports.item_delete = async function (req, res, next) {
   
   console.log('delete', req.query);
 
-  var sql    = SqlString.format('DELETE FROM mydata where id=?',
-     [req.params.id]);
+  var sql    = 'DELETE FROM mydata where id=?';
 
   try {
-    var result = await executeSqlChange(sql);
+    var result = await executeSqlChange(sql, [req.params.id]);
     sendOk(res, `Number of changes ${result.changes}`);
 
   } catch(err) {
