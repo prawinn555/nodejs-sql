@@ -8,8 +8,7 @@ exports.test = function (req, res) {
 
 
 exports.item_save = async function (req, res, next) {
-  
-  
+
   console.log('Create item %j', req.body);
 
   // example to use blocking call (await)
@@ -26,7 +25,7 @@ exports.item_save = async function (req, res, next) {
     await executeSqlChange(sql);
 
     const replaced = result.changes>0;
-    res.send(`A row has been ${replaced? 'updated' : 'inserted'}`);
+    sendOk(res, `A row has been ${replaced? 'updated' : 'inserted'}`);
 
   } catch(err) {
       sendError(res, err);
