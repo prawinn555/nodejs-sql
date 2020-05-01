@@ -8,7 +8,7 @@ exports.test = function (req, res) {
 
 
 exports.item_save = async function (req, res, next) {
-  prepareResponseHeader(res);
+  
   console.log('Create item %j', req.body);
   
   // example to use blocking call (await)
@@ -81,7 +81,7 @@ exports.item_details = function (req, res, next) {
       sendError(res, err);
     } else { 
       console.log("result find by %j : %j", req.params, rows);
-      prepareResponseHeader(res);
+      
       res.send(rows)
     }
   });
@@ -105,7 +105,7 @@ exports.item_list = function (req, res, next) {;
       sendError(res, err);
     } else { 
       console.log(`result find liste ${rows.length} \n %j`, rows);
-      prepareResponseHeader(res);
+      
       res.status(200)
       res.send(rows)
     }
@@ -113,22 +113,10 @@ exports.item_list = function (req, res, next) {;
   });
 };
 
-function prepareResponseHeader(res) {
-  /*
-  Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept
-  Access-Control-Allow-Methods: GET, PUT, POST, DELETE, HEAD
-  Access-Control-Allow-Origin: *
-  Access-Control-Expose-Headers: date,content-type,content-length,connection,x-powered-by,access-control-allow-origin,access-control-allow-headers,access-control-allow-methods,etag,x-final-url
-
-*/ 
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD");
-}
 
 
 exports.item_delete = async function (req, res, next) {
-  prepareResponseHeader(res); 
+  
   console.log('delete', req.query);
 
   var sql    = SqlString.format('DELETE FROM mydata where id=?',
