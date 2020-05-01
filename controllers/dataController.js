@@ -8,9 +8,9 @@ exports.test = function (req, res) {
 
 
 exports.item_save = async function (req, res, next) {
-
+  prepareResponseHeader(res);
   console.log('Create item %j', req.body);
-
+  
   // example to use blocking call (await)
   try {
     var sql;
@@ -34,14 +34,12 @@ exports.item_save = async function (req, res, next) {
 
 function sendError(response, err) {
    console.info(err);
-   prepareResponseHeader(response);
    response.send({ 
       status : 'ERR', 
       message : 'error in database ' +err });
 }
 
 function sendOk(response, msg) {
-   prepareResponseHeader(response);
    response.send({ 
       status : 'OK', 
       message : msg });
@@ -130,6 +128,8 @@ function prepareResponseHeader(res) {
 
 
 exports.item_delete = async function (req, res, next) {
+  prepareResponseHeader(res); 
+  console.log('delete', req.query);
 
   var sql    = SqlString.format('DELETE FROM mydata where id=?',
      [req.params.id]);
