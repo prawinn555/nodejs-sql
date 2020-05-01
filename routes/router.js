@@ -79,7 +79,7 @@ router.post('/items/create', item_controller.item_create);
 
 /**
  * @swagger
- * /items/{name}:
+ * /items/{id}:
  *   get:
  *     tags:
  *       - item management
@@ -123,7 +123,7 @@ router.put('/items/update', item_controller.item_update);
 
 /**
  * @swagger
- * /items/{name}/delete:
+ * /items/{id}/delete:
  *   delete:
  *     tags:
  *       - item management
