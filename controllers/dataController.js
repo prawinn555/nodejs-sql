@@ -16,6 +16,9 @@ exports.item_save = async function (req, res, next) {
     var sql;
     var result;
 
+    if(!req.body.id) {
+      throw new Error("ID is required");
+    }
     sql = SqlString.format(`DELETE FROM mydata where id=?`,
       [req.body.id]);
     result = await executeSqlChange(sql);
