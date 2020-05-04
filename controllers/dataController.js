@@ -94,10 +94,12 @@ exports.item_list = function (req, res, next) {;
                                                   
   console.log('find by %j', req.query);
 
-  var typeCriteria = req.query.type;                                                
-  var criteria = (typeCriteria===undefined || typeCriteria==='')?  '%' : typeCriteria;
+  let typeCriteria = req.query.type;                                                
+  let criteria = (typeCriteria===undefined || typeCriteria==='')?  '%' : typeCriteria;
   console.log('criteria '+criteria);
-  var sql    = 'SELECT id, type, description from mydata where type like ?';
+  let sql    = ('true'===req.query.opposite)?
+       'SELECT id, type, description from mydata where type not like ?' :
+       'SELECT id, type, description from mydata where type like ?';
                                                   
 
   db.all(sql,[criteria],(err, rows ) => {
